@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\LunchRegistrationController as AdminLunchRegistrationController;
 use App\Http\Controllers\LunchRegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,7 +12,8 @@ Route::post('/mitessen', [LunchRegistrationController::class, 'store'])
     ->middleware('throttle:6,1')->name('lunch.store');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+    Route::get('dashboard', AdminLunchRegistrationController::class)
+        ->middleware('can:access-admin')->name('dashboard');
 });
 
 require __DIR__.'/settings.php';
