@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
 
-const base = '/KitchenBros/';
+const base = process.env.PAGES_BASE || '/KitchenBros/';
 export default defineConfig({
     root: fileURLToPath(new URL('.', import.meta.url)),
     base,
